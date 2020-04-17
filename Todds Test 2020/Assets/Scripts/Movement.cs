@@ -6,8 +6,40 @@ using Photon.Pun;
 using Photon.Realtime;
 public class Movement : MonoBehaviourPunCallbacks
 {
+    [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
+    public static GameObject LocalPlayerInstance;
+
     private Vector2 direction;
 
+    [Tooltip("The Player's UI GameObject Prefab")]
+    [SerializeField]
+    public GameObject PlayerUiPrefab;
+
+    private void Awake() 
+    {
+        // #Important
+        // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
+        if (photonView.IsMine)
+        {
+            Movement.LocalPlayerInstance = this.gameObject;
+        }
+        // #Critical
+        // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start() 
+    {
+        if (PlayerUiPrefab != null)
+        {
+            GameObject _uiGo =  Instantiate(PlayerUiPrefab);
+            _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
+        }
+        else
+        {
+            Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
+        }
+    }
     private void Update()
     {
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
@@ -39,5 +71,13 @@ public class Movement : MonoBehaviourPunCallbacks
     {
         transform.Translate(direction * 1);
     }
+
+    //Das ist Improviesirt vlht kann das auch weg soll das UI nihct zerstören wenn eine neue Map geladen wird 
+    public void CalledOnLevelWasLoaded()
+    {
+        GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+    }
+    
 }
 

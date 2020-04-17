@@ -28,7 +28,14 @@ using Photon.Realtime;
             {
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f,0f,0f), Quaternion.identity, 0);
+                if (Movement.LocalPlayerInstance == null)
+                {
+                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0.5f,0.5f,0f), Quaternion.identity, 0);
+                }
+                else
+                {
+                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+                }
             }
         }
         /// <summary>
