@@ -12,10 +12,10 @@ using Photon.Realtime;
     public class GameManager : MonoBehaviourPunCallbacks
     {
 
+       
 
-
-        [Tooltip("The prefab to use for representing the player")]
-        public GameObject playerPrefab;
+        [SerializeField]
+        private GameObject playerPrefab;
 
 
         private void Start() 
