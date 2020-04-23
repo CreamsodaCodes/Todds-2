@@ -55,9 +55,30 @@ public class Moveforallothers : MonoBehaviourPunCallbacks
             Script.CharaList.Add(ViewId);
 
         }
-        
-        
-        
+        if (ViewId == 3002 || ViewId == 3003 || ViewId == 3004 || ViewId == 3005 )
+        {
+            GameObject FirstSpawn =  PhotonView.Find(3001).gameObject;
+            CharacterList Script = FirstSpawn.GetComponent<CharacterList>();
+            _characterList = Script;
+            Script.CharaList.Add(ViewId);
+
+        }
+        if (ViewId == 4002 || ViewId == 4003 || ViewId == 4004 || ViewId == 4005 )
+        {
+            GameObject FirstSpawn =  PhotonView.Find(4001).gameObject;
+            CharacterList Script = FirstSpawn.GetComponent<CharacterList>();
+            _characterList = Script;
+            Script.CharaList.Add(ViewId);
+
+        }
+        if (ViewId == 5002 || ViewId == 5003 || ViewId == 5004 || ViewId == 5005 )
+        {
+            GameObject FirstSpawn =  PhotonView.Find(5001).gameObject;
+            CharacterList Script = FirstSpawn.GetComponent<CharacterList>();
+            _characterList = Script;
+            Script.CharaList.Add(ViewId);
+
+        }
         
         //CharacterList.CharaList.Add(ViewId);
         if (PlayerUiPrefab != null)
@@ -104,6 +125,9 @@ public class Moveforallothers : MonoBehaviourPunCallbacks
         if(Input.GetKeyDown(KeyCode.Q)){
             PhotonNetwork.Instantiate("My otherTest Player", new Vector3(0.5f,0.5f,0f), Quaternion.identity, 0);
             
+        }
+        if(Input.GetKeyDown(KeyCode.Z)){
+            PhotonNetwork.Destroy(this.gameObject);            
         }
 
     }
