@@ -1,8 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CharacterList
     - GameManager
     - Launcher
+    - Moveforallothers
     - Movement
     - PlayerNameInputField
     - myPlayerUI
@@ -52,7 +54,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/Launcher.unity.unity:
+    Assets/Scenes/Launcher.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -88,51 +90,55 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11840}
+      Script: {instanceID: 11864}
     - Class: 114
-      Script: {instanceID: 12030}
+      Script: {instanceID: 12054}
     - Class: 114
-      Script: {instanceID: 12040}
+      Script: {instanceID: 12062}
     - Class: 114
-      Script: {instanceID: 12448}
+      Script: {instanceID: 12468}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12862}
     - Class: 114
-      Script: {instanceID: 12996}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 13170}
+      Script: {instanceID: 13190}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13198}
     - Class: 114
-      Script: {instanceID: 13224}
+      Script: {instanceID: 13244}
     - Class: 114
-      Script: {instanceID: 13384}
+      Script: {instanceID: 13404}
     - Class: 114
-      Script: {instanceID: 13388}
+      Script: {instanceID: 13408}
     - Class: 114
-      Script: {instanceID: 13396}
+      Script: {instanceID: 13416}
     - Class: 114
-      Script: {instanceID: 13502}
+      Script: {instanceID: 13522}
     - Class: 114
-      Script: {instanceID: 14024}
+      Script: {instanceID: 14044}
     - Class: 114
-      Script: {instanceID: 14196}
+      Script: {instanceID: 14216}
     - Class: 114
-      Script: {instanceID: 14366}
+      Script: {instanceID: 14384}
     - Class: 114
-      Script: {instanceID: 14372}
+      Script: {instanceID: 14390}
     - Class: 114
-      Script: {instanceID: 14558}
+      Script: {instanceID: 14576}
     - Class: 114
-      Script: {instanceID: 14614}
+      Script: {instanceID: 14632}
     - Class: 114
-      Script: {instanceID: 14808}
+      Script: {instanceID: 14826}
     - Class: 114
-      Script: {instanceID: 15054}
+      Script: {instanceID: 15072}
     - Class: 114
-      Script: {instanceID: 15210}
+      Script: {instanceID: 15226}
     - Class: 114
-      Script: {instanceID: 15578}
+      Script: {instanceID: 15592}
+    - Class: 114
+      Script: {instanceID: 27282}
+    - Class: 114
+      Script: {instanceID: 28720}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -185,29 +191,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 614}
     - Class: 114
-      Script: {instanceID: 11840}
+      Script: {instanceID: 11864}
     - Class: 114
-      Script: {instanceID: 12030}
+      Script: {instanceID: 12054}
     - Class: 114
-      Script: {instanceID: 12448}
+      Script: {instanceID: 12468}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12862}
     - Class: 114
-      Script: {instanceID: 12996}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 13170}
+      Script: {instanceID: 13190}
     - Class: 114
-      Script: {instanceID: 13384}
+      Script: {instanceID: 13404}
     - Class: 114
-      Script: {instanceID: 13388}
+      Script: {instanceID: 13408}
     - Class: 114
-      Script: {instanceID: 13502}
+      Script: {instanceID: 13522}
     - Class: 114
-      Script: {instanceID: 14808}
+      Script: {instanceID: 14826}
     - Class: 114
-      Script: {instanceID: 15054}
+      Script: {instanceID: 15072}
     - Class: 114
-      Script: {instanceID: 15432}
+      Script: {instanceID: 15448}
+    - Class: 114
+      Script: {instanceID: 28720}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -254,23 +262,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 614}
     - Class: 114
-      Script: {instanceID: 11840}
+      Script: {instanceID: 11864}
     - Class: 114
-      Script: {instanceID: 12448}
+      Script: {instanceID: 12468}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12862}
     - Class: 114
-      Script: {instanceID: 12996}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 13170}
+      Script: {instanceID: 13190}
     - Class: 114
-      Script: {instanceID: 13384}
+      Script: {instanceID: 13404}
     - Class: 114
-      Script: {instanceID: 13502}
+      Script: {instanceID: 13522}
     - Class: 114
-      Script: {instanceID: 14808}
+      Script: {instanceID: 14826}
     - Class: 114
-      Script: {instanceID: 15432}
+      Script: {instanceID: 15448}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1610,10 +1618,21 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
     className: UserIdUiForm
+  - hash:
+      serializedVersion: 2
+      Hash: 1f564f9bd95c388c7d8115e1776d4a90
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Moveforallothers
+  - hash:
+      serializedVersion: 2
+      Hash: 0c7ace97c0f97c0efcfa63ef6367edde
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CharacterList
   platform: 5
   scenePathNames:
-  - Assets/Scenes/Launcher.unity.unity
+  - Assets/Scenes/Launcher.unity
   - Assets/Scenes/Map 2.unity
   - Assets/Scenes/Map 3.unity
-  playerPath: D:/Programmieren/Unity/Todds/Todds-2/Todds Test 2020/Builds/Todds Test
-    2020.exe
+  playerPath: C:/Users/Noah/Desktop/Todds Test 2020.exe

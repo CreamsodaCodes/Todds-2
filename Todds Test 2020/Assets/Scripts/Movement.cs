@@ -8,13 +8,16 @@ public class Movement : MonoBehaviourPunCallbacks
 {
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
-
+    private int ViewId;
     private Vector2 direction;
+
+    private CharacterList _characterList;
+
 
     [Tooltip("The Player's UI GameObject Prefab")]
     [SerializeField]
     public GameObject PlayerUiPrefab;
-
+    
     private void Awake() 
     {
         // #Important
@@ -29,7 +32,12 @@ public class Movement : MonoBehaviourPunCallbacks
     }
 
     private void Start() 
-    {
+    {   
+        GameObject FirstSpawn = this.gameObject;
+        CharacterList Script = FirstSpawn.GetComponent<CharacterList>();
+        _characterList = Script;
+        ViewId = photonView.ViewID;
+        Script.CharaList.Add(ViewId);
         if (PlayerUiPrefab != null)
         {
             GameObject _uiGo =  Instantiate(PlayerUiPrefab);
@@ -46,8 +54,14 @@ public class Movement : MonoBehaviourPunCallbacks
         {
             return;
         }
+
+        if (photonView.ViewID !=  _characterList.currentControlled)
+        {
+            return;
+        }
         GetInput();
         MoveIt();
+     
     }
 
     private void GetInput()
@@ -64,6 +78,10 @@ public class Movement : MonoBehaviourPunCallbacks
         }
         if(Input.GetKeyDown(KeyCode.D)){
             direction += Vector2.right;
+            
+        }
+        if(Input.GetKeyDown(KeyCode.Q)){
+            PhotonNetwork.Instantiate("My otherTest Player", new Vector3(0.5f,0.5f,0f), Quaternion.identity, 0);
             
         }
     }

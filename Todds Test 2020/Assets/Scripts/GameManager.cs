@@ -17,6 +17,10 @@ using Photon.Realtime;
         [SerializeField]
         private GameObject playerPrefab;
 
+        public void SpawnMorePrefabs()
+        {
+            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0.5f,0.5f,0f), Quaternion.identity, 0);
+        }
 
         private void Start() 
         {
