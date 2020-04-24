@@ -35,6 +35,12 @@ public class Moveforallothers : MonoBehaviourPunCallbacks
 
     private void Start() 
     {
+        if (photonView.IsMine)
+        {
+            var GameObjectRenderer = this.gameObject.GetComponent<Renderer>();
+            GameObjectRenderer.material.SetColor("_Color", Color.red);
+            
+        }
         Id = 1001;
         ViewId = photonView.ViewID;
 

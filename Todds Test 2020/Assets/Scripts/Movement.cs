@@ -47,6 +47,12 @@ public class Movement : MonoBehaviourPunCallbacks
         {
             Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
         }
+
+        if (photonView.IsMine)
+        {
+            var GameObjectRenderer = FirstSpawn.GetComponent<Renderer>();
+            GameObjectRenderer.material.SetColor("_Color", Color.red);
+        }
     }
     private void Update()
     {
